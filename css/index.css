@@ -1,4 +1,5 @@
 body {
   background: url('../images/backgrounds/real-wall.jpg') center center no-repeat;
   background-size: cover;
+  min-height: 100vh;
 }

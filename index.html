@@ -2,12 +2,20 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8"/>
-    <title>Document</title>
-    <link href="/src/css/normalize.css" rel="stylesheet"/>
-    <link href="/src/css/index.css" rel="stylesheet"/>
+    <title>Sticker walllll</title>
+    <link href="css/normalize.css" rel="stylesheet"/>
+    <link href="css/index.css" rel="stylesheet"/>
   </head>
   <body>
     <h1>hello world</h1>
-    <script src="/src/js/index.js"></script>
+    <div id="sticker-wrapper"></div>
+    <template id="sticker-template">
+      <div class="sticker">
+        {tag}
+        <div class="sticker-content">{content}</div>
+      </div>
+    </template>
+
+    <script type="module" src="js/index.js"></script>
   </body>
 </html>
