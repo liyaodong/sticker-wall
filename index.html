@@ -11,15 +11,15 @@
     </div>
 
     <template id="sticker-template">
-      <div class="sticker">
+      <div class="sticker js-sticker-item">
         <span data-payload="tag"></span>
         <div class="sticker-content" data-payload="content"></div>
       </div>
     </template>
     <template id="sitcker-form">
       <form class="sticker sticker-form js-sticker-form">
-        <label for="label">Label</label>
-        <input id="label" name="label" type="text" value=""/>
+        <label for="tag">Label</label>
+        <input id="tag" name="label" type="text" value=""/>
         <label for="content">Content</label>
         <input id="content" name="content" type="text" value=""/>
         <input type="submit" style="visibility: hidden;" />

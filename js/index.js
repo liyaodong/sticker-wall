@@ -1,24 +1,27 @@
 import Sticker from './Sticker.js';
+import StickerList from './StickerList.js';
+
 import { render } from './view.js';
 import { $, eventDelegate } from './utils.js';
 
 {
-  const stickers = [];
-  const tags = [];
+  const $stickerWrapper = $('#sticker-items');
 
-  const init = () => {
-    for (let i = 0; i < 10; i++) {
-      stickers.push(new Sticker({ content: 'test sticker', tag: '12123123' }));
-    }
-
-    const $stickerWrapper = $('#sticker-items');
-
+  const renderList = data => {
     // render stickers to view
     render({
       $el: $stickerWrapper,
       $template: $('#sticker-template'),
-      data: stickers
+      itemSelector: '.js-sticker-item',
+      data
     });
+  };
+
+  const stickers = new StickerList({ onChange: renderList });
+  const tags = [];
+
+  const init = () => {
+    stickers.push(new Sticker({ content: 'test sticker', tag: '12123123' }));
 
     // append add/form item
     $stickerWrapper.append($('#sitcker-form').content);
@@ -27,13 +30,20 @@ import { $, eventDelegate } from './utils.js';
     // listen add sticker button
     eventDelegate($stickerWrapper, 'click', 'js-sticker-add', () => {
       $stickerWrapper.classList.add('is-adding');
+      $('.js-sticker-form input').focus();
     });
 
     // listen sticker form submit
     eventDelegate($stickerWrapper, 'submit', 'js-sticker-form', e => {
       e.preventDefault();
-      const formData = new FormData(e.target);
-      console.log(formData);
+      const $f = e.target;
+      const $tag = $f.querySelector('input#tag');
+      const $content = $f.querySelector('input#content');
+      stickers.push(new Sticker({ content: $content.value, tag: $tag.value }));
+      $tag.value = '';
+      $content.value = '';
+
+      $stickerWrapper.classList.remove('is-adding');
     });
   };
 
