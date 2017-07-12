@@ -7,13 +7,26 @@
     <link href="css/index.css" rel="stylesheet"/>
   </head>
   <body>
-    <h1>hello world</h1>
-    <div id="sticker-wrapper"></div>
+    <div class="sticker-wrapper" id="sticker-items">
+    </div>
+
     <template id="sticker-template">
       <div class="sticker">
         <span data-payload="tag"></span>
         <div class="sticker-content" data-payload="content"></div>
       </div>
+    </template>
+    <template id="sitcker-form">
+      <form class="sticker sticker-form js-sticker-form">
+        <label for="label">Label</label>
+        <input id="label" name="label" type="text" value=""/>
+        <label for="content">Content</label>
+        <input id="content" name="content" type="text" value=""/>
+        <input type="submit" style="visibility: hidden;" />
+      </form>
+    </template>
+    <template id="sitcker-add">
+      <div class="sticker sticker-add js-sticker-add"></div>
     </template>
 
     <script type="module" src="js/index.js"></script>

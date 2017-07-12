@@ -1,8 +1,6 @@
 import { $$ } from './utils.js';
 
 export function render({ $el, $template, data }) {
-  $el.innerHTML = '';
-
   const template = $template.content;
 
   data.forEach(dataItem => {

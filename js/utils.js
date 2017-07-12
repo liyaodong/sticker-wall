@@ -5,3 +5,11 @@ export function $(selector) {
 export function $$(selector) {
   return document.querySelectorAll(selector);
 }
+
+export function eventDelegate($listener, eventName, targetClass, cb) {
+  $listener.addEventListener(eventName, e => {
+    if (e.target.classList.contains(targetClass)) {
+      cb(e);
+    }
+  });
+}
