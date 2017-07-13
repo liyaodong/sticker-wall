@@ -1,6 +1,9 @@
 import Sticker from './Sticker.js';
 import StickerList from './StickerList.js';
 
+import Tag from './Tag.js';
+import TagList from './TagList.js';
+
 import { render } from './view.js';
 import { $, eventDelegate } from './utils.js';
 
@@ -30,20 +33,16 @@ import { $, eventDelegate } from './utils.js';
     // listen add sticker button
     eventDelegate($stickerWrapper, 'click', 'js-sticker-add', () => {
       $stickerWrapper.classList.add('is-adding');
-      $('.js-sticker-form input').focus();
+      $stickerWrapper.querySelector('.js-sticker-content-input').focus();
     });
 
     // listen sticker form submit
-    eventDelegate($stickerWrapper, 'submit', 'js-sticker-form', e => {
-      e.preventDefault();
-      const $f = e.target;
-      const $tag = $f.querySelector('input#tag');
-      const $content = $f.querySelector('input#content');
-      stickers.push(new Sticker({ content: $content.value, tag: $tag.value }));
-      $tag.value = '';
-      $content.value = '';
-
-      $stickerWrapper.classList.remove('is-adding');
+    $stickerWrapper.querySelector('.js-sticker-form').addEventListener('keydown', ({ key, target }) => {
+      if (key === 'Enter') {
+        stickers.push(new Sticker({ content: target.innerHTML, tag: Math.random() }));
+        target.innerHTML = '';
+        $stickerWrapper.classList.remove('is-adding');
+      }
     });
   };
 
