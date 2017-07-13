@@ -1,13 +1,15 @@
 class Tag {
-  constructor({ content }) {
+  constructor({ content, color }) {
     this.id = Math.random();
     this.content = content;
+    this.color = color;
   }
 
   toPlanData() {
     return {
       id: this.id,
-      content: this.content
+      content: this.content,
+      color: this.color
     };
   }
 }

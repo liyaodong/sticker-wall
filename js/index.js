@@ -5,7 +5,7 @@ import Tag from './Tag.js';
 import TagList from './TagList.js';
 
 import { render } from './view.js';
-import { $, eventDelegate, times } from './utils.js';
+import { $, eventDelegate, times, onEnter } from './utils.js';
 
 {
   const $stickerWrapper = $('#sticker-items');
@@ -26,14 +26,15 @@ import { $, eventDelegate, times } from './utils.js';
       $el: $tagsList,
       $template: $('#tag-item'),
       itemSelector: '.js-tag-item',
-      data
+      data,
+      onRender: ($item, { color }) => $item.style.backgroundColor = color
     });
   };
 
   const stickers = new StickerList({ onChange: renderStickerList });
   const tags = new TagList({ onChange: renderTagList });
 
-  times(5, () => tags.push(new Tag({ content: Math.random() })));
+  times(5, () => tags.push(new Tag({ content: Math.random(), color: '#f0aebc' })));
   stickers.push(new Sticker({ content: 'test sticker', tag: '12123123' }));
 
 
@@ -49,12 +50,10 @@ import { $, eventDelegate, times } from './utils.js';
     });
 
     // listen sticker content enter
-    $stickerWrapper.querySelector('.js-sticker-form').addEventListener('keydown', ({ key, target }) => {
-      if (key === 'Enter') {
-        stickers.push(new Sticker({ content: target.innerHTML, tag: Math.random() }));
-        target.innerHTML = '';
-        $stickerWrapper.classList.remove('is-adding');
-      }
+    onEnter($stickerWrapper.querySelector('.js-sticker-form'), ({ target }) => {
+      stickers.push(new Sticker({ content: target.innerHTML, tag: Math.random() }));
+      target.innerHTML = '';
+      $stickerWrapper.classList.remove('is-adding');
     });
 
     // listen tag click
@@ -62,6 +61,20 @@ import { $, eventDelegate, times } from './utils.js';
       if(confirm('Delete tag?')) {
         tags.delete(target.dataset.vId);
       }
+    });
+
+    $('.js-tag-add').addEventListener('click', () => {
+      const $f = $('.js-tag-form');
+      $f.classList.add('is-adding');
+      $f.querySelector('.js-tag-form-content').focus(); 
+    });
+
+    onEnter($('.js-tag-form-content'), ({ target }) => {
+      const tagContent = target.innerHTML;
+      const tagColor = $('.js-tag-color').value;
+      tags.push(new Tag({ content: tagContent, color: tagColor }));
+      target.innerHTML = '';
+      $('.js-tag-form').classList.remove('is-adding');
     });
   };
 

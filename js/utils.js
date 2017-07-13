@@ -17,3 +17,13 @@ export function eventDelegate($listener, eventName, targetClass, cb) {
 export function times(n, fn) {
   Array(n).fill().forEach(fn);
 }
+
+export function onEnter($dom, fn) {
+  $dom.addEventListener('keydown', e => {
+    const { key, target } = e;
+    if (key === 'Enter') {
+      e.preventDefault();
+      fn(e);
+    }
+  });
+}

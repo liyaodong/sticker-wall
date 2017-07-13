@@ -7,7 +7,7 @@ function convertObjectKeyToLowerCase(obj) {
   }, {});
 }
 
-export function render({ $el, $template, itemSelector, data }) {
+export function render({ $el, $template, itemSelector, data, onRender = f => f }) {
   const template = $template.content;
 
   const $items = data.map(convertObjectKeyToLowerCase).map(dataItem => {
@@ -21,6 +21,8 @@ export function render({ $el, $template, itemSelector, data }) {
         const attrData = dataItem[key.replace(/^v/, '').toLowerCase()];
         $payload.dataset[key] = attrData;
       });
+
+      onRender($payload, dataItem);
     });
 
     return $item;

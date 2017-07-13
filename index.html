@@ -7,7 +7,14 @@
     <link href="css/index.css" rel="stylesheet"/>
   </head>
   <body>
-    <div class="tags-list" id="tags-list"></div>
+    <div class="tags-container">
+      <div class="tags-list" id="tags-list"></div>
+      <div class="tag-item tag-item-add-content js-tag-form">
+        <div class="tag-item-add-content__input js-tag-form-content" contenteditable></div>
+        <input class="tag-item-add-content__color-input js-tag-color" type="color" value="#00ff6e"/>
+      </div>
+      <div class="tag-item tag-item-add icon-add js-tag-add">&nbsp;</div>
+    </div>
     <div class="sticker-wrapper" id="sticker-items">
     </div>
 
@@ -26,7 +33,7 @@
     </template>
 
     <template id="sitcker-add">
-      <div class="sticker sticker-add js-sticker-add"></div>
+      <div class="sticker sticker-add icon-add js-sticker-add"></div>
     </template>
 
     <template id="tag-select">
@@ -34,7 +41,7 @@
     </template>
 
     <template id="tag-item">
-      <div class="tag-item js-tag-item" data-payload="content" data-v-id="{{id}}"></div>
+      <div class="tag-item js-tag-item" data-payload="content" data-v-color data-v-id></div>
     </template>
 
     <script type="module" src="js/index.js"></script>
