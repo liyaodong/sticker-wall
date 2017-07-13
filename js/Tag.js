@@ -5,7 +5,7 @@ class Tag {
     this.color = color;
   }
 
-  toPlanData() {
+  toPlainData() {
     return {
       id: this.id,
       content: this.content,

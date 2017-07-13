@@ -1,7 +1,7 @@
 import { $$ } from './utils.js';
 
 function convertObjectKeyToLowerCase(obj) {
-  const convertedObj = obj.toPlanData() || obj;
+  const convertedObj = obj.toPlainData() || obj;
   return Object.keys(convertedObj).reduce((acc, key) => {
     return {...acc, [key.toLowerCase()]: obj[key]};
   }, {});
@@ -32,7 +32,11 @@ export function render({ $el, $template, itemSelector, data, onRender = f => f }
     const $oldItems = $el.querySelectorAll(itemSelector);
     $items.forEach(x => {
       const $prevItems = $el.querySelectorAll(itemSelector);
-      $prevItems[$prevItems.length - 1].after(x);
+      if ($prevItems.length) {
+        $prevItems[$prevItems.length - 1].after(x);
+      } else {
+        $oldItems.innerHTML = x;
+      }
     });
 
     $oldItems.forEach(x => x.remove());

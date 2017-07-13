@@ -13,6 +13,10 @@ class TagList {
     this._list = this._list.filter(x => x.id !== +id);
     this.onChange(this._list);
   }
+  
+  toPlainData() {
+    return this._list;
+  }
 }
 
 

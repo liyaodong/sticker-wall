@@ -4,7 +4,7 @@ class Sticker {
     this.tag = tag;
   }
 
-  toPlanData() {
+  toPlainData() {
     return {
       tag: this.tag,
       content: this.content
