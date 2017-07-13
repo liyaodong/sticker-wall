@@ -5,6 +5,10 @@ body {
   color: #fff;
 }
 
+[contenteditable] {
+  outline: none;
+}
+
 .icon-add {
   background-position: center center;
   background-repeat: no-repeat;
@@ -94,7 +98,7 @@ body {
 
 .tag-item-add-content {
   display: flex;
-  align-items: middle;
+  align-items: center;
 }
 
 .tag-item-add-content:not(.is-adding) {
@@ -108,6 +112,5 @@ body {
 
 .tag-item-add-content__input {
   min-width: 100px;
-  line-height: 25px;
   margin-right: 5px;
 }

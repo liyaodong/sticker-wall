@@ -74,12 +74,14 @@ const TAG = 'tags';
       }
     });
 
+    // listen add tag button
     $('.js-tag-add').addEventListener('click', () => {
       const $f = $('.js-tag-form');
       $f.classList.add('is-adding');
       $f.querySelector('.js-tag-form-content').focus(); 
     });
 
+    // listen submit new tag event
     onEnter($('.js-tag-form-content'), ({ target }) => {
       const tagContent = target.innerHTML;
       const tagColor = $('.js-tag-color').value;
@@ -87,6 +89,12 @@ const TAG = 'tags';
       target.innerHTML = '';
       $('.js-tag-form').classList.remove('is-adding');
       syncTags(pageData[TAG]);
+    });
+
+    // listen color change event
+    $('.js-tag-color').addEventListener('change', ({ target }) => {
+      const color = target.value;
+      $('.js-tag-form').style.backgroundColor = color;
     });
   };
 
