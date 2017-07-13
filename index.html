@@ -7,6 +7,7 @@
     <link href="css/index.css" rel="stylesheet"/>
   </head>
   <body>
+    <div class="tags-list" id="tags-list"></div>
     <div class="sticker-wrapper" id="sticker-items">
     </div>
 
@@ -30,6 +31,10 @@
 
     <template id="tag-select">
       <div class="tag-item" data-payload="content"></div>
+    </template>
+
+    <template id="tag-item">
+      <div class="tag-item js-tag-item" data-payload="content" data-v-id="{{id}}"></div>
     </template>
 
     <script type="module" src="js/index.js"></script>

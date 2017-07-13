@@ -3,6 +3,13 @@ class Sticker {
     this.content = content;
     this.tag = tag;
   }
+
+  toPlanData() {
+    return {
+      tag: this.tag,
+      content: this.content
+    };
+  }
 }
 
 

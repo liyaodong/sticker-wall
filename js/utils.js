@@ -13,3 +13,7 @@ export function eventDelegate($listener, eventName, targetClass, cb) {
     }
   });
 }
+
+export function times(n, fn) {
+  Array(n).fill().forEach(fn);
+}
